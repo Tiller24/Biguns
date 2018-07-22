@@ -1,5 +1,12 @@
-
+/*main page body*/
 body{
+	height: 100%;
+	width:  100%;
+}
+
+/*The loading screen on bootup*/
+#load-body {
+	text-align: center;
 	height: 100%;
 	width:  100%;
 }
@@ -11,7 +18,7 @@ body{
 
 
 #loading{
-	background-color: rgba(11, 48, 22,0.8);
+	background: linear-gradient(rgb(0,0,0,0.6) , rgb(255,140,0));
 	text-align: center;
 	color: white;
 	position:fixed;
