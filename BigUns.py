@@ -132,7 +132,7 @@ def new_request():
 if __name__ == "__main__":
 	ON_HEROKU = os.environ.get('ON_HEROKU')						#see if Heroku is running app
 	if ON_HEROKU:
-		application.run()
+		application.run(debug = False)
 	else:
 		port = 80
 		application.run(debug = True, port = port, host = '0.0.0.0')
