@@ -1,12 +1,14 @@
-html{
-	background-color: black;
-	color: white;
-	height: 100%;
-}
 
 body{
 	height: 100%;
+	width:  100%;
 }
+
+.gradient {
+	background: linear-gradient(black , orange);
+	color:	    white;
+}
+
 
 #loading{
 	background-color: rgba(11, 48, 22,0.8);
@@ -42,23 +44,37 @@ body{
 	margin-bottom: 10px;
 }
 
-.biguns-weeks{
-	grid-column: 2;
-	grid-row: 2;
-}
-
 .song-titles{
 	grid-column: 1;
 	grid-row: 2;
 	margin-left: auto;
 	margin-right: auto;
 	border: solid 10px black;
+	background: linear-gradient(orange, black);
+}
+
+.biguns-weeks{
+	text-align: center;
+	grid-column: 2;
+	grid-row: 2;
+	padding: 0.5em;
+	margin-right: auto;
+	border: solid 10px black;
+	background: linear-gradient(orange, black);
+}
+
+
+
+#titles {
+	padding: 0.5em;
+}
+
+#load {
+	margin-bottom: 2em;
 }
 
 .grid-container {
 	display: grid;
-	border-right: solid green 5px;
-	border-left: solid green 5px;
 }
 
 /*==========================*/
