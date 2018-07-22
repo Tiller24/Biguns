@@ -1,0 +1,64 @@
+html{
+	background-color: black;
+	color: white;
+	height: 100%;
+}
+
+body{
+	height: 100%;
+}
+
+#loading{
+	background-color: rgba(11, 48, 22,0.8);
+	text-align: center;
+	color: white;
+	position:fixed;
+    top:0;
+    left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	display: none;
+}
+
+/*========= Weeks Table =========*/
+
+#biguns-weeks{
+	height: 300px;
+	overflow: auto;
+	margin-bottom: 5px;
+}
+
+
+/*==========================*/
+
+/*========= Layout =========*/
+
+.videos{
+	grid-column: 1 / span 2;
+	grid-row: 1;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+}
+
+.biguns-weeks{
+	grid-column: 2;
+	grid-row: 2;
+}
+
+.song-titles{
+	grid-column: 1;
+	grid-row: 2;
+	margin-left: auto;
+	margin-right: auto;
+	border: solid 10px black;
+}
+
+.grid-container {
+	display: grid;
+	border-right: solid green 5px;
+	border-left: solid green 5px;
+}
+
+/*==========================*/

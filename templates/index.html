@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Biguns Countdown!</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+function load_more(){
+	$("#loading").show();
+	$.post("/load_more/",
+    function(data, status){
+		if (data == "none"){
+			var button = document.getElementById("load");
+			button.disabled = true;
+		}
+		else {
+			
+			var table = document.getElementById("weeks");
+			var tbody = table.getElementsByTagName("tbody")[0];
+		
+			//append to the existing table
+			for (t in data){
+				var tr = document.createElement("tr");
+				var td = document.createElement("td");
+				var txt = document.createTextNode(data[t]);
+				td.appendChild(txt);
+				td.onclick = function(){new_request(this.parentNode.rowIndex)}
+				tr.appendChild(td);
+				tbody.appendChild(tr);
+			}
+			$("#loading").hide();
+		}
+    });
+}
+
+function new_request(i){
+	$("#loading").show();
+	$.post("/new_request/",{
+		"index" : i
+	},
+    function(data, status){
+		var json = JSON.parse(data);
+		var titles = json.titles;
+		new_titles(titles);
+		document.getElementById('playlist').setAttribute('src',json.iframe);
+		$("#loading").hide();
+    });
+}
+
+function new_titles(titles){
+	$("#titles tr").remove(); //clear all previous 
+	var table = document.getElementById("titles");
+	var size  = titles.length;
+	var tab   = "\u00a0\u00a0\u00a0\u00a0\u00a0";
+	
+	for (t in titles){
+			var tr = document.createElement("tr");
+			var td = document.createElement("td");
+			var txt = document.createTextNode("#" + size + tab + titles[t]);
+			size--;
+			td.appendChild(txt);
+			tr.appendChild(td);
+			table.appendChild(tr);
+		}
+}
+
+</script>
+</head>
+	<body>
+		<!--Loading gif shows up when making queries-->
+		<div id="loading">
+			<h1>Loading... Please wait</h1>
+			<img src="../static/loading.gif" alt="Loading">
+		</div>
+		<div class="grid-container">
+			<div class="biguns-weeks">
+				<div id="biguns-weeks">
+					<table id="weeks">
+						{%for week in weeks%}
+						<tr>
+							<td onclick = "new_request(this.parentNode.rowIndex)">{{week}}</td>
+						</tr>
+						{%endfor%}
+					</table>
+				</div>
+				<button id="load" onclick="load_more()" type="submit">Load More</button>
+			</div>
+			<div class="song-titles">
+				<table id="titles">
+					{%set size = titles|length%}
+					{%for title in titles%}
+					<tr>
+						<!--Putting titles in reverse I think?-->
+						<td>#{{size - loop.index + 1}}&emsp;{{title}}</td>
+					</tr>
+					{%endfor%}
+				</table>
+			</div>
+			<div class="videos">
+				<iframe id="playlist" width="720" height="405" src="https://www.youtube.com/embed/{{iframe}}"frameborder="0" allowfullscreen>
+			</div>
+		</div>		
+	</body>
+</html>
