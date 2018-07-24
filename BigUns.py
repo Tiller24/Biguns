@@ -57,7 +57,7 @@ def first_page():
 		urls.append(b.find("h2").find("a")['href'])											#add url to list of urls
 		weeks.append(b.find("h2").find("a").getText())										#the week names
 		
-	return urls[2] #starting from Week of 6/30/18; because they changed their html for the most recent week. Change index to match Week of 6/30/18!
+	return urls[3] #starting from Week of 6/30/18; because they changed their html for the most recent week. Change index to match Week of 6/30/18!
 
 def new_playlist(url):
 	global iframe,titles
