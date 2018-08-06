@@ -6,34 +6,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
-function load_more(){
-	$("#loading").show();
-	$.post("/load_more/",
-    function(data, status){
-		if (data == "none"){
-			var button = document.getElementById("load");
-			button.disabled = true;
-			$("#loading").hide();
-		}
-		else {
-			
-			var table = document.getElementById("weeks");
-			var tbody = table.getElementsByTagName("tbody")[0];
-		
-			//append to the existing table
-			for (t in data){
-				var tr = document.createElement("tr");
-				var td = document.createElement("td");
-				var txt = document.createTextNode(data[t]);
-				td.appendChild(txt);
-				td.onclick = function(){new_request(this.parentNode.rowIndex)}
-				tr.appendChild(td);
-				tbody.appendChild(tr);
-			}
-			$("#loading").hide();
-		}
-    });
-}
 
 function new_request(i){
 	$("#loading").show();
@@ -85,7 +57,6 @@ function new_titles(titles){
 						{%endfor%}
 					</table>
 				</div>
-				<button id="load" onclick="load_more()" type="submit">Load More</button>
 			</div>
 			<div class="song-titles">
 				<table id="titles">
