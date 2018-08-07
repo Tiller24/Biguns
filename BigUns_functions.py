@@ -1,11 +1,28 @@
 #!/usr/bin/env python3
 
+import os
 import psycopg2
 import json
+import urllib.parse as urlparse
 
 class Functions:
+
+	url = urlparse.urlparse(os.environ['DATABASE_URL'])
+	dbname = url.path[1:]
+	user = url.username
+	password = url.password
+	host = url.hostname
+	port = url.port
+
+
 	try:
-		conn = psycopg2.connect("dbname='biguns' user='tylerjnolan' host='localhost' password='tiller24'")
+		conn = psycopg2.connect(
+            dbname=dbname,
+            user=user,
+            password=password,
+            host=host,
+            port=port
+            )
 	except:
 		print ("I am unable to connect to the database")
 		exit()
