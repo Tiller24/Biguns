@@ -3,6 +3,8 @@ import requests								#to get the website html
 import re		
 from bs4 	  import BeautifulSoup
 import psycopg2
+import os
+import urllib.parse as urlparse
 from yt_id    import yt_id					#obtain the youtube id's of each video found
 
 class Database:
