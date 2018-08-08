@@ -37,6 +37,7 @@ class Functions:
 	week = curse.fetchall()																	# The database table names
 	
 	
+	
 	def new_request(self,index):															# Build a new playlist based on the week clicked
 		iframe = self.playlist()
 		iframe_src = 'https://www.youtube.com/embed/' + iframe
@@ -53,17 +54,16 @@ class Functions:
 		return iframe
 	
 	def set_weeks(self):																	# Display the UI Friendly names																
-		self.curse.execute("SELECT UIFRIENDLY FROM WEEKS ORDER BY ID DESC;")
-		w = self.curse.fetchall()
-		for x in w:
-			# print(x[0])
-			self.weeks.append(x[0])
+		for w in self.week:
+			# print(w[0])
+			self.weeks.append(w[0])
 		return self.weeks
 		
 	def set_yt_ids(self,index):																# Display the new videos
 		self.yt_ids = []
-		self.curse.execute("SELECT YT_ID FROM " + self.week[index][0] + " ORDER BY ID" )
+		self.curse.execute("SELECT YT_ID FROM SONGS WHERE WEEK = '" + self.week[index][0].replace("'","''") + "' ORDER BY RANK")
 		y = self.curse.fetchall()
+		
 		for x in y:
 			# print(x[0])
 			self.yt_ids.append(x[0])
@@ -71,10 +71,9 @@ class Functions:
 	
 	def set_titles(self,index):																# Display new titles
 		self.titles = []
-		self.curse.execute("SELECT title FROM " + self.week[index][0] + " ORDER BY ID" )
+		self.curse.execute("SELECT TITLE FROM SONGS WHERE WEEK = '" + self.week[index][0].replace("'","''") + "' ORDER BY RANK" )
 		t = self.curse.fetchall()
 		for x in t:
-			# print(x[0])
 			self.titles.append(x[0])
 		return self.titles
 	

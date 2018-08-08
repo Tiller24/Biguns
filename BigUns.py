@@ -13,6 +13,7 @@ application = Flask(__name__)
 biguns = Functions()
 db     = Database()
 
+
 @application.route('/')
 def loading():
 	return render_template("loading.html")
@@ -24,7 +25,8 @@ def latest_biguns():
 	# attempt to add the most recent biguns
 	try:
 		recent_biguns = db.first_page() 						# Get the frontpage for the most recent biguns
-		db.new_playlist(recent_biguns)							# Try to add to the database
+		if not recent_biguns is None:
+			db.new_playlist(recent_biguns)						# Try to add to the database
 	except:
 		# TODO: Explane in more detail what error is
 		print("Something went wrong loading the new Biguns")	# likely failed if there is not a recent biguns, or scraping went wrong
