@@ -11,7 +11,6 @@ from flask import Flask, render_template, request, jsonify
 application = Flask(__name__)
 
 biguns = Functions()
-db     = Database()
 
 
 @application.route('/')
@@ -21,15 +20,6 @@ def loading():
 @application.route('/latest_biguns/', methods=['POST','GET'])
 def latest_biguns():
 	"""Create the index page, with latest biguns as the first playlist displayed"""
-	
-	# attempt to add the most recent biguns
-	try:
-		recent_biguns = db.first_page() 						# Get the frontpage for the most recent biguns
-		if not recent_biguns is None:
-			db.new_playlist(recent_biguns)						# Try to add to the database
-	except:
-		# TODO: Explane in more detail what error is
-		print("Something went wrong loading the new Biguns")	# likely failed if there is not a recent biguns, or scraping went wrong
 	
 	weeks  = biguns.weeks										# The entirety of biguns in history
 	yt_ids = biguns.yt_ids										# Most recent video IDs

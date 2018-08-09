@@ -66,9 +66,9 @@ class Database:
 		insert_query = "INSERT INTO WEEKS (ID,NAME) VALUES (" + str(insert_index) + ",\'" + self.name + "\')"
 		
 		self.curse.execute(insert_query)
-		self.conn.commit()
+		# self.conn.commit()
 		
-		self.insert(songlist,videos,titles)													# add the songs to the newly created table
+		self.insert(songlist,videos,titles)															# add the songs to the newly created table
 	
 	def scrape(self,website):
 		songlist = []	#store the songs and artist name
@@ -87,7 +87,7 @@ class Database:
 			return songlist[::-1] 																	# reverse the list because this html format requires it
 	
 		
-	def insert(self,songlist,videos,titles):													# adds the songs to the new table
+	def insert(self,songlist,videos,titles):														# adds the songs to the new table
 		
 		if len(songlist) == len(videos):
 			size = len(songlist)
@@ -95,7 +95,7 @@ class Database:
 				insert_query = "INSERT INTO SONGS VALUES (" + str(i+1) + ",\'" + songlist[i] + "\',\'" + videos[i] + "\',\'" + titles[i].replace("'","") + "\',\'" + self.name +"\');"
 				
 				self.curse.execute(insert_query)
-				self.conn.commit()
+			self.conn.commit()
 		else:
 			print("Inserting new playlist failed")
 
