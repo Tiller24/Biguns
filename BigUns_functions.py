@@ -62,6 +62,7 @@ class Functions:
 	def set_yt_ids(self,index):																# Display the new videos
 		self.yt_ids = []
 		self.curse.execute("SELECT YT_ID FROM SONGS WHERE WEEK = '" + self.week[index][0].replace("'","''") + "' ORDER BY RANK")
+		# print(self.week[index][0].replace("'","''"))
 		y = self.curse.fetchall()
 		
 		for x in y:
@@ -72,9 +73,10 @@ class Functions:
 	def set_titles(self,index):																# Display new titles
 		self.titles = []
 		self.curse.execute("SELECT TITLE FROM SONGS WHERE WEEK = '" + self.week[index][0].replace("'","''") + "' ORDER BY RANK" )
+		# print(self.week[index][0].replace("'","''"))
 		t = self.curse.fetchall()
 		for x in t:
-			self.titles.append(x[0])
+			self.titles.append(x[0].replace("&#39;","").replace("&quot;",""))
 		return self.titles
 	
 
