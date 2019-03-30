@@ -1,6 +1,6 @@
 psycopg2==2.7.5
 Flask==0.12.2
-requests==2.18.4
+requests==2.21.0
 google_api_python_client==1.7.4
 beautifulsoup4==4.6.1
 waitress==1.1.0
