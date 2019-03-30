@@ -75,14 +75,14 @@ class Database:
 		response = requests.get(website,headers={'User-Agent':'Mozilla/5.0'})						# request the webpage html
 	
 		soup = BeautifulSoup(response.text,"html.parser")											# parse webpage								
-		songs = soup.findAll('tr')																	# finds the table of songs
+		songs = soup.findAll('tr')																	# finds the table of songs “”
 	
 		if len(songs) != 0:
 			for s in songs[1:]:
-				c      = s.contents
-				song   = c[5].text.lower().strip().replace("’","").replace("'","")
-				artist = c[3].text.lower().strip().replace("’","").replace("'","")
-				songlist.append(song + " - " + artist + " official music video")					# add song and artist to songlist
+				c      = s.contents 
+				song   = c[5].text.lower().strip().replace("’","").replace("'","").replace("“","").replace("”","")
+				artist = c[3].text.lower().strip().replace("’","").replace("'","").replace("“","").replace("”","")
+				songlist.append(song + " - " + artist)					# add song and artist to songlist
 
 			return songlist[::-1] 																	# reverse the list because this html format requires it
 	
