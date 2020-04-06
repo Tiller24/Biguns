@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import psycopg2
 import os
 import urllib.parse as urlparse
-from yt_id import yt_id  # obtain the youtube id's of each video found
+from yt_id import Yt_id  # obtain the youtube id's of each video found
 
 
 class Database:
