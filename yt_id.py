@@ -11,7 +11,7 @@ YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
 
-class yt_id:
+class Yt_id:
     """This class goes and searches for the youtube videos
 	   returning the id of each video it finds
 	   It utilizes from the YouTube Data API
