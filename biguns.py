@@ -2,8 +2,8 @@
 
 import os
 
-from BigUns_functions import Functions
-from Database import Database
+from biguns_functions import Functions
+from database import Database
 
 # Flask is the web app, render_template loads html pages with python data
 # request for GET/POST requests, and jsonify to send json data

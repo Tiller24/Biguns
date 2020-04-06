@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from Database import Database
+from database import database
 import time
 import os
 
