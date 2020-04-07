@@ -55,7 +55,7 @@ class Database:
     def new_playlist(self, url):
 
         songlist = self.scrape(url)  # Scrape for the songlist
-        vid = yt_id(songlist)  # use the Youtube API to search for songs
+        vid = Yt_id(songlist)  # use the Youtube API to search for songs
         titles = vid.get_titles()  # titles obtained from Youtube API
         videos = vid.get_videos()  # video IDs obtained from Youtube API
 
