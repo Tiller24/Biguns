@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT BigUns:application 
+web: waitress-serve --port=$PORT biguns:application 
