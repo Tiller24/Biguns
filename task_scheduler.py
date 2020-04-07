@@ -44,7 +44,7 @@ try:
         print("There is no new biguns")
 
 except Exception as e:
-    # TODO: Explane in more detail what error is
+    # TODO: Explain in more detail what error is
     print("There was an exception scraping: ", e)
-    email(str(e, 'Error Scraping'))
+    email(str(e), 'Error Caught')
 time.sleep(60)  # delay for 60 seconds
