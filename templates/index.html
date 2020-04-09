@@ -4,41 +4,9 @@
 <title>Biguns Countdown!</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
+<script type = "text/javascript"
+         src = "{{ url_for('static', filename = 'functions.js') }}" ></script>
 
-
-function new_request(i){
-	$("#loading").show();
-	$.post("/new_request/",{
-		"index" : i
-	},
-    function(data, status){
-		var json = JSON.parse(data);
-		var titles = json.titles;
-		new_titles(titles);
-		document.getElementById('playlist').setAttribute('src',json.iframe);
-		$("#loading").hide();
-    });
-}
-
-function new_titles(titles){
-	$("#titles tr").remove(); //clear all previous 
-	var table = document.getElementById("titles");
-	var size  = titles.length;
-	var tab   = "\u00a0\u00a0\u00a0\u00a0\u00a0";
-	
-	for (t in titles){
-			var tr = document.createElement("tr");
-			var td = document.createElement("td");
-			var txt = document.createTextNode("#" + size + tab + titles[t]);
-			size--;
-			td.appendChild(txt);
-			tr.appendChild(td);
-			table.appendChild(tr);
-		}
-}
-
-</script>
 </head>
 	<body class="gradient">
 		<!--Loading gif shows up when making queries-->
