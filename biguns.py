@@ -24,20 +24,21 @@ def latest_biguns():
     """Create the index page, with latest biguns as the first playlist displayed"""
 
     weeks = biguns.weeks  # The entirety of biguns in history
-    yt_ids = biguns.yt_ids  # Most recent video IDs
+    # yt_ids = biguns.yt_ids  # Most recent video IDs
     titles = biguns.titles  # Most recent titles of the videos found
     iframe = biguns.playlist()  # The playlist of most recent songs
 
     return render_template("index.html", iframe=iframe, weeks=weeks, titles=titles)
 
 
-@application.route('/new_request/', methods=['GET', 'POST'])
+@application.route('/new_request/', methods=['POST'])
 def new_request():
     if request.method == 'POST':
-        index = int(request.form['index'])  # The week clicked
-        biguns.set_yt_ids(index)  # Set new video IDs
-        biguns.set_titles(index)  # Set new video titles
-        return jsonify(biguns.new_request(index))  # Send data as JSON
+        data = request.get_json()
+        index = data['index']
+        biguns.set_yt_ids(index)
+        biguns.set_titles(index)
+        return jsonify(biguns.new_request())  # Send data as JSON
 
 
 if __name__ == "__main__":

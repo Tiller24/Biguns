@@ -28,13 +28,13 @@ class Functions:
 
     curse = conn.cursor()  # Used in executing queries
 
-    weeks = [];  # The UI Friendly week names
-    yt_ids = [];
-    titles = [];
+    weeks  = []  # The UI Friendly week names
+    yt_ids = []
+    titles = []
     curse.execute("SELECT NAME FROM WEEKS ORDER BY ID DESC;")  # Get all the database table names
     week = curse.fetchall()  # The database table names
 
-    def new_request(self, index):  # Build a new playlist based on the week clicked
+    def new_request(self):  # Build a new playlist based on the week clicked
         iframe = self.playlist()
         iframe_src = 'https://www.youtube.com/embed/' + iframe
         json_arr = json.dumps(self.titles)

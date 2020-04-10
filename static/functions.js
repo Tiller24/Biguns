@@ -1,30 +1,40 @@
 function new_request(i){
-	$("#loading").show();
-	$.post("/new_request/",{
-		"index" : i
-	},
-    function(data, status){
-		var json = JSON.parse(data);
-		var titles = json.titles;
-		new_titles(titles);
-		document.getElementById('playlist').setAttribute('src',json.iframe);
-		$("#loading").hide();
-    });
+	document.getElementById('loading').style.display = 'block'; //show element
+
+	// create request object
+	let request = new Request('/new_request/', {
+		method: 'POST',
+		body: JSON.stringify({'index' : i}),
+		headers: new Headers({
+			'Content-Type': 'application/json'
+		})
+	});
+
+	// pass request object to `fetch()`
+	fetch(request)
+		.then(res => res.json())
+		.then(function(data){
+			var json = JSON.parse(data);
+			var titles = json.titles;
+			new_titles(titles);
+			document.getElementById('playlist').setAttribute('src',json.iframe);
+			document.getElementById('loading').style.display = 'none'; //hide element
+		});
 }
 
 function new_titles(titles){
-	$("#titles tr").remove(); //clear all previous
+	document.getElementById('titles').innerHTML = "";
 	var table = document.getElementById("titles");
 	var size  = titles.length;
 	var tab   = "\u00a0\u00a0\u00a0\u00a0\u00a0";
 
 	for (t in titles){
-			var tr = document.createElement("tr");
-			var td = document.createElement("td");
-			var txt = document.createTextNode("#" + size + tab + titles[t]);
-			size--;
-			td.appendChild(txt);
-			tr.appendChild(td);
-			table.appendChild(tr);
-		}
+		var tr = document.createElement("tr");
+		var td = document.createElement("td");
+		var txt = document.createTextNode("#" + size + tab + titles[t]);
+		size--;
+		td.appendChild(txt);
+		tr.appendChild(td);
+		table.appendChild(tr);
+	}
 }
