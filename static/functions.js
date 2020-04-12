@@ -20,6 +20,7 @@ function new_request(i){
 			document.getElementById('playlist').setAttribute('src',json.iframe);
 			document.getElementById('loading').style.display = 'none'; //hide loading gif
 			onYouTubeIframeAPIReady();
+			window.location.reload(true);
 		});
 }
 
