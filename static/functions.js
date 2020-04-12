@@ -1,5 +1,5 @@
 function new_request(i){
-	document.getElementById('loading').style.display = 'block'; //show element
+	document.getElementById('loading').style.display = 'block'; //show loading gif
 
 	// create request object
 	let request = new Request('/new_request/', {
@@ -18,7 +18,8 @@ function new_request(i){
 			var titles = json.titles;
 			new_titles(titles);
 			document.getElementById('playlist').setAttribute('src',json.iframe);
-			document.getElementById('loading').style.display = 'none'; //hide element
+			document.getElementById('loading').style.display = 'none'; //hide loading gif
+			onYouTubeIframeAPIReady();
 		});
 }
 

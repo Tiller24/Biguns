@@ -36,7 +36,7 @@ class Functions:
 
     def new_request(self):  # Build a new playlist based on the week clicked
         iframe = self.playlist()
-        iframe_src = 'https://www.youtube.com/embed/' + iframe
+        iframe_src = 'https://www.youtube.com/embed/' + iframe + "&enablejsapi=1"
         json_arr = json.dumps(self.titles)
 
         return '{"iframe" : "%s", "titles" : %s}' % (iframe_src, json_arr)
