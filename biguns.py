@@ -24,9 +24,8 @@ def latest_biguns():
     """Create the index page, with latest biguns as the first playlist displayed"""
 
     weeks = biguns.weeks  # The entirety of biguns in history
-    # yt_ids = biguns.yt_ids  # Most recent video IDs
     titles = biguns.titles  # Most recent titles of the videos found
-    iframe = biguns.playlist()  # The playlist of most recent songs
+    iframe = biguns.yt_ids  # The playlist of most recent songs
 
     return render_template("index.html", iframe=iframe, weeks=weeks, titles=titles)
 
@@ -47,4 +46,4 @@ if __name__ == "__main__":
         application.run(debug=False)
     else:  # Else, app is running in localhost
         port = 80  # TODO: run it using waitress
-        application.run(debug=True, port=port, host='0.0.0.0')
+        application.run(debug=True, port=port, host='localhost')

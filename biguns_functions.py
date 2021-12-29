@@ -35,18 +35,14 @@ class Functions:
     week = curse.fetchall()  # The database table names
 
     def new_request(self):  # Build a new playlist based on the week clicked
-        iframe = self.playlist()
-        iframe_src = 'https://www.youtube.com/embed/' + iframe + "&enablejsapi=1"
+        # iframe = self.playlist()
+        # iframe_src = 'https://www.youtube.com/embed/' + iframe + "&enablejsapi=1"
         json_arr = json.dumps(self.titles)
 
-        return '{"iframe" : "%s", "titles" : %s}' % (iframe_src, json_arr)
+        return '{"iframe" : "%s", "titles" : %s}' % (self.yt_ids, json_arr)
 
-    def playlist(self):  # Build the new playlist
-        iframe = self.yt_ids[0] + '?playlist='  # open tag
-        for v in self.yt_ids[1:]:
-            iframe += v + ','
-        iframe = iframe[:-1]  # remove trailing comma after the loop
-        return iframe
+    # def get_yt_ids(self):  # Get the current playlist
+    #     return self.yt_ids
 
     def set_weeks(self):  # Display the UI Friendly names
         for w in self.week:

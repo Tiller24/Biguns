@@ -38,15 +38,14 @@
 				</table>
 			</div>
 			<div class="videos">
-				<iframe id="playlist"
-        			width="640" height="360"
-        			src="https://www.youtube.com/embed/{{iframe}}&enablejsapi=1"
-        			frameborder="0"
-        			allowfullscreen
-				></iframe>
+				<div id="playlist"></div>
+				<script type="text/javascript">
+					var firstSong = {{iframe[0]|tojson}};
+					var songList  = {{iframe|tojson}};
+				</script>
 				<script type="text/javascript"
 					src = "{{ url_for('static', filename = 'iFrame.js') }}" ></script>
 			</div>
-		</div>		
+		</div>
 	</body>
 </html>
