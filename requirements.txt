@@ -4,4 +4,4 @@ requests==2.23.0
 beautifulsoup4==4.9.0
 google_api_python_client==1.8.0
 setuptools==40.3.0
-waitress==1.4.3
+waitress==2.1.1
